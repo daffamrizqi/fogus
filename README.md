@@ -8,6 +8,9 @@ Its goal is simple: help you quickly capture what you are working on, what inter
 
 This tool is a good fit for people who frequently context-switch, jump between tasks, or need a lightweight external memory while working.
 
+Or maybe if you're an engineer and have adhd like me LOL. The idea of me for making this tool is to simply keeping track and help me to focus in the middle of this chaotic 
+distraction world in a simple way. Hence why i made this tool as simple as possible. Looking forward to add new features for this tool.
+
 ## Why fogus
 
 Interstitial journaling is useful because you do not need to wait until the end of the day to remember what happened. You just capture small slices of activity as they happen.
