@@ -2,45 +2,45 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-`fogus` adalah terminal tool untuk interstitial journaling.
+`fogus` is a terminal tool for interstitial journaling.
 
-Tujuannya sederhana: membantu Anda cepat menangkap apa yang sedang dikerjakan, apa yang menginterupsi fokus, dan bagaimana hari Anda benar-benar berjalan.
+Its goal is simple: help you quickly capture what you are working on, what interrupted your focus, and how your day actually unfolded.
 
-Tool ini cocok untuk orang yang sering mengalami context switching, lompat antar task, atau butuh external memory yang ringan selama bekerja.
+This tool is a good fit for people who frequently context-switch, jump between tasks, or need a lightweight external memory while working.
 
-## Kenapa fogus
+## Why fogus
 
-Interstitial journaling berguna karena Anda tidak perlu menunggu sampai akhir hari untuk mengingat apa yang terjadi. Anda cukup mencatat potongan kecil aktivitas saat itu juga.
+Interstitial journaling is useful because you do not need to wait until the end of the day to remember what happened. You just capture small slices of activity as they happen.
 
-`fogus` mencoba menjaga proses itu tetap ringan:
+`fogus` tries to keep that process lightweight:
 
 1. terminal-first
 2. local-first
-3. cepat dipakai
-4. format file tetap manusiawi
-5. tidak mengunci data Anda di format yang sulit dibaca
+3. fast to use
+4. human-readable file format
+5. no lock-in to a hard-to-read storage format
 
-## Status saat ini
+## Current status
 
-Versi sekarang adalah MVP yang sudah usable untuk kebutuhan harian pribadi.
+The current version is an MVP that is already usable for personal daily use.
 
-Fokusnya belum ke fitur banyak, tapi ke flow dasar yang harus cepat dan stabil.
+The focus is not on having many features yet, but on making the core flow fast and reliable.
 
-## Fitur yang sudah ada
+## Current features
 
-1. Mencatat log aktivitas dengan timestamp otomatis
-2. Menambahkan log untuk waktu tertentu dengan `--at HH:MM`
-3. Menambahkan log untuk tanggal tertentu dengan `--date YYYY-MM-DD`
-4. Menulis log satu baris atau multi-line
-5. Menulis log lewat editor dengan `--editor`
-6. Menyimpan journal harian otomatis ke Markdown
-7. Menampilkan timeline hari tertentu dengan `today`
-8. Menampilkan summary netral hari tertentu dengan `summary`
-9. Menyisipkan entry secara kronologis, bukan sekadar append di bawah
+1. Log activities with automatic timestamps
+2. Add entries for a specific time with `--at HH:MM`
+3. Add entries for a specific date with `--date YYYY-MM-DD`
+4. Write one-line or multi-line logs
+5. Write logs through your editor with `--editor`
+6. Automatically save daily journals as Markdown
+7. Show the timeline for a given day with `today`
+8. Show a neutral daily summary with `summary`
+9. Insert entries chronologically instead of only appending at the bottom
 
 ## Quickstart
 
-### Setup dari nol
+### Setup from scratch
 
 1. Install Go:
 
@@ -48,77 +48,77 @@ Fokusnya belum ke fitur banyak, tapi ke flow dasar yang harus cepat dan stabil.
 brew install go
 ```
 
-2. Clone repo:
+2. Clone the repository:
 
 ```bash
 git clone <repo-url>
 cd fogus
 ```
 
-3. Install `fogus` ke `~/.local/bin`:
+3. Install `fogus` to `~/.local/bin`:
 
 ```bash
 make install
 ```
 
-4. Verifikasi command:
+4. Verify the command:
 
 ```bash
 fogus help
 ```
 
-5. Coba langsung:
+5. Try it right away:
 
 ```bash
-fogus log "Mulai kerja"
+fogus log "Start working"
 fogus today
 fogus summary
 ```
 
-### Setup singkat
+### Short setup
 
-Kalau Go sudah ada dan Anda sudah di repo:
+If Go is already installed and you are already inside the repo:
 
 ```bash
 make install
-fogus log "Mulai kerja"
+fogus log "Start working"
 fogus today
 fogus summary
 ```
 
-## Instalasi
+## Installation
 
-Binary akan dipasang ke:
+The binary will be installed to:
 
 ```text
 ~/.local/bin/fogus
 ```
 
-Direktori itu harus ada di `PATH` shell Anda.
+That directory must be available in your shell `PATH`.
 
-## Lokasi penyimpanan
+## Storage location
 
-Semua log disimpan otomatis di:
+All logs are automatically stored in:
 
 ```text
 ~/.fogus/journal
 ```
 
-Format file per hari:
+Daily file format:
 
 ```text
 ~/.fogus/journal/YYYY-MM-DD.md
 ```
 
-Contoh:
+Example:
 
 ```text
 ~/.fogus/journal/2026-06-12.md
 ```
 
-Kalau folder belum ada, `fogus` akan membuatnya otomatis.
+If the folder does not exist yet, `fogus` will create it automatically.
 
-## Command
+## Commands
 
 ```bash
 fogus log [--date YYYY-MM-DD] [--at HH:MM] [--editor] [text...]
@@ -126,156 +126,156 @@ fogus today [--date YYYY-MM-DD]
 fogus summary [--date YYYY-MM-DD]
 ```
 
-## Penggunaan dasar
+## Basic usage
 
 ### Quick capture
 
 ```bash
-fogus log "Mulai PBI data retention."
+fogus log "Start PBI data retention."
 ```
 
-`fogus` akan otomatis:
+`fogus` will automatically:
 
-1. mengambil waktu saat ini
-2. menentukan file hari ini
-3. menyimpan log ke `~/.fogus/journal`
+1. capture the current time
+2. determine today's file
+3. save the log to `~/.fogus/journal`
 
-### Multi-line dari terminal
+### Multi-line from the terminal
 
 ```bash
 fogus log
 ```
 
-Lalu tulis isi log, dan akhiri dengan `Ctrl+D`.
+Then write your log and finish with `Ctrl+D`.
 
-Contoh:
+Example:
 
 ```text
 09:47 - write log, end with Ctrl+D
-Kepikiran cek AWS billing.
-Tahan dulu. Lanjut retention.
+Thought about checking AWS billing.
+Hold that thought. Back to retention.
 ```
 
-### Multi-line lewat editor
+### Multi-line through your editor
 
 ```bash
 export EDITOR=nvim
 fogus log --editor
 ```
 
-`fogus` akan membuka editor dari environment variable `$EDITOR`.
+`fogus` will open the editor defined in the `$EDITOR` environment variable.
 
-Kalau `$EDITOR` belum diset, command ini akan gagal.
+If `$EDITOR` is not set, the command will fail.
 
-### Backfill waktu tertentu
+### Backfill a specific time
 
-Kalau Anda lupa log tepat waktu:
-
-```bash
-fogus log --at 09:45 "Selesai analisa transactions.parquet."
-```
-
-Entry akan disisipkan ke posisi waktu yang benar.
-
-### Backfill tanggal tertentu
-
-Kalau Anda ingin mencatat ke hari sebelumnya:
+If you forgot to log at the exact moment:
 
 ```bash
-fogus log --date 2026-06-12 --at 11:20 "Stuck di query finder."
+fogus log --at 09:45 "Finished analyzing transactions.parquet."
 ```
 
-### Lihat timeline
+The entry will be inserted in the correct chronological position.
+
+### Backfill a specific date
+
+If you want to log something for a previous day:
+
+```bash
+fogus log --date 2026-06-12 --at 11:20 "Got stuck on the query finder."
+```
+
+### View the timeline
 
 ```bash
 fogus today
 fogus today --date 2026-06-12
 ```
 
-Jika belum ada log:
+If no entries exist:
 
 ```text
 No entries for 2026-06-13
 ```
 
-### Lihat summary
+### View the summary
 
 ```bash
 fogus summary
 fogus summary --date 2026-06-12
 ```
 
-Summary versi sekarang bersifat netral. Belum ada grouping seperti `focus`, `break`, atau `blocker`.
+The current summary is intentionally neutral. It does not yet group entries into categories like `focus`, `break`, or `blocker`.
 
-## Contoh workflow nyata
+## A realistic workflow example
 
-Contoh ini cukup dekat dengan pola kerja yang sering terjadi saat fokus pecah, ada distraksi kecil, lalu harus kembali ke task utama.
+This example is close to the kind of workday where focus gets interrupted, small distractions show up, and you need to return to the main task quickly.
 
-### Mulai kerja
-
-```bash
-fogus log "Mulai PBI data retention."
-```
-
-### Selesai satu langkah analisa
+### Start work
 
 ```bash
-fogus log --at 09:45 "Selesai analisa transactions.parquet."
+fogus log "Start PBI data retention."
 ```
 
-### Ada distraksi mendadak
+### Finish one analysis step
 
 ```bash
-fogus log
+fogus log --at 09:45 "Finished analyzing transactions.parquet."
 ```
 
-Lalu isi:
-
-```text
-Kepikiran cek AWS billing.
-Tahan dulu. Lanjut retention.
-```
-
-### Ambil break singkat
-
-```bash
-fogus log "Break kopi."
-```
-
-### Kembali ke task utama
-
-```bash
-fogus log "Balik ke script batch delete."
-```
-
-### Stuck dan butuh referensi
+### A sudden distraction appears
 
 ```bash
 fogus log
 ```
 
-Lalu isi:
+Then write:
 
 ```text
-Stuck di query finder.
-Cari referensi schema.
+Thought about checking AWS billing.
+Hold that thought. Back to retention.
 ```
 
-### Review hari berjalan
+### Take a short break
+
+```bash
+fogus log "Coffee break."
+```
+
+### Return to the main task
+
+```bash
+fogus log "Back to the batch delete script."
+```
+
+### Get stuck and need a reference
+
+```bash
+fogus log
+```
+
+Then write:
+
+```text
+Got stuck on the query finder.
+Looking up the schema reference.
+```
+
+### Review the day so far
 
 ```bash
 fogus today
 fogus summary
 ```
 
-Dengan flow seperti ini, Anda tidak perlu mengingat semuanya di kepala. `fogus` menjadi jejak kecil yang membantu Anda:
+With a flow like this, you do not need to keep everything in your head. `fogus` becomes a lightweight trail that helps you:
 
-1. melihat progres nyata
-2. menangkap interupsi sebelum hilang
-3. kembali ke konteks yang benar setelah terdistraksi
-4. meninjau pola kerja di akhir hari
+1. see real progress
+2. capture interruptions before they disappear
+3. return to the right context after getting distracted
+4. review work patterns at the end of the day
 
-## Contoh output
+## Example output
 
 ### Timeline
 
@@ -283,14 +283,14 @@ Dengan flow seperti ini, Anda tidak perlu mengingat semuanya di kepala. `fogus` 
 2026-06-12
 
 09:00
-Mulai PBI data retention.
+Start PBI data retention.
 
 09:45
-Selesai analisa transactions.parquet.
+Finished analyzing transactions.parquet.
 
 09:47
-Kepikiran cek AWS billing.
-Tahan dulu. Lanjut retention.
+Thought about checking AWS billing.
+Hold that thought. Back to retention.
 ```
 
 ### Summary
@@ -302,83 +302,83 @@ First log: 09:00
 Last log: 11:20
 
 Entries
-- 09:00 Mulai PBI data retention.
-- 09:45 Selesai analisa transactions.parquet.
-- 09:47 Kepikiran cek AWS billing. (+1 line)
+- 09:00 Start PBI data retention.
+- 09:45 Finished analyzing transactions.parquet.
+- 09:47 Thought about checking AWS billing. (+1 line)
 ```
 
-## Format file journal
+## Journal file format
 
-Contoh file hasil simpan:
+Example saved file:
 
 ```md
 # 2026-06-12
 
 09:00
-Mulai PBI data retention.
+Start PBI data retention.
 
 09:45
-Selesai analisa transactions.parquet.
+Finished analyzing transactions.parquet.
 
 09:47
-Kepikiran cek AWS billing.
-Tahan dulu. Lanjut retention.
+Thought about checking AWS billing.
+Hold that thought. Back to retention.
 ```
 
-Format ini sengaja sederhana supaya:
+This format is intentionally simple so that it is:
 
-1. mudah dibaca langsung
-2. mudah di-backup
-3. mudah dipindahkan ke Obsidian atau Git
-4. tetap berguna walau tanpa `fogus`
+1. easy to read directly
+2. easy to back up
+3. easy to move into Obsidian or Git
+4. still useful even without `fogus`
 
-## Perilaku penting
+## Important behavior
 
-1. Entry dengan timestamp yang lebih awal akan disisipkan ke tengah file jika perlu
-2. Entry dengan timestamp yang sama akan mempertahankan urutan input
-3. File journal ditulis ulang dengan format yang konsisten setiap ada perubahan
-4. `today` dan `summary` membaca sumber Markdown yang sama
+1. Entries with earlier timestamps are inserted into the middle of the file when needed
+2. Entries with the same timestamp keep input order
+3. The journal file is rewritten in a consistent format after each change
+4. `today` and `summary` read from the same Markdown source
 
-## Batasan versi sekarang
+## Current limitations
 
-1. Belum ada tagging seperti `#break` atau `#blocker`
-2. Belum ada grouping summary otomatis
-3. Belum ada weekly review
-4. Belum ada sync ke Obsidian vault tertentu
-5. Belum ada mode TUI full-screen
+1. No tagging yet such as `#break` or `#blocker`
+2. No automatic grouped summaries yet
+3. No weekly review yet
+4. No sync to a specific Obsidian vault yet
+5. No full-screen TUI mode yet
 
 ## Roadmap
 
 ### Near term
 
-1. Grouping summary sederhana seperti `focus`, `break`, `blocker`, dan `interruption`
-2. Tagging ringan tanpa membuat input terasa berat
-3. Weekly review untuk melihat pola kerja mingguan
-4. Perintah install dan distribusi yang lebih rapi
+1. Lightweight summary grouping such as `focus`, `break`, `blocker`, and `interruption`
+2. Lightweight tagging without making input feel heavy
+3. Weekly review to spot work patterns over time
+4. Cleaner install and distribution workflows
 
 ### Mid term
 
-1. Integrasi opsional ke Obsidian vault tertentu
-2. Export atau format output yang lebih cocok untuk refleksi harian
-3. Pencarian dan filter berdasarkan tanggal atau kata kunci
-4. Prompt atau shortcut untuk quick capture yang lebih cepat
+1. Optional integration with a specific Obsidian vault
+2. Export or output formats better suited for daily reflection
+3. Search and filtering by date or keyword
+4. Faster quick-capture prompts or shortcuts
 
 ### Longer term
 
-1. TUI mode untuk journaling dan review tanpa meninggalkan terminal
-2. Template harian atau review terstruktur
-3. Insight ringan dari pola journaling, tanpa membuat tool terasa berat
-4. Positioning yang lebih matang untuk open source dan distribusi berbayar
+1. TUI mode for journaling and review without leaving the terminal
+2. Daily templates or more structured review flows
+3. Lightweight insights from journaling patterns without making the tool feel heavy
+4. More mature positioning for open source distribution and paid distribution
 
-## Untuk open source atau produk
+## For open source or product direction
 
-Kalau `fogus` nanti dibuka ke publik atau dijual, positioning yang menurut saya kuat adalah:
+If `fogus` becomes a public or paid project later, the strongest positioning is probably:
 
-1. journaling tool untuk orang yang sering context-switching
-2. terminal-native capture tool untuk pekerja knowledge work
-3. local-first daily work log yang tetap manusiawi dibaca
+1. a journaling tool for people who frequently context-switch
+2. a terminal-native capture tool for knowledge workers
+3. a local-first daily work log that stays human-readable
 
-Nilai jual utamanya bukan sekadar "CLI note app", tapi tool yang membantu orang kembali ke konteks kerja saat perhatian mereka pecah.
+Its real value is not just that it is a CLI note app, but that it helps people return to working context after their attention gets fragmented.
 
 ## Development
 
